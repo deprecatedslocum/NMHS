@@ -1,11 +1,19 @@
-function [tr1_trained, tr2_trained, em1_trained, em2_trained, logLs] = ...
-    baum_welch2d(tr1_guess, tr2_guess, em1_guess, em2_guess, seq1, seq2)
-% baum_welch.m
-% Author: Joshua Slocum
-% Last modified: 6/25/15 (Danil Tyulmankov) Minor backwards compatibility adjustments 
 % Implements the Baum-Welch algorithm for 2-dimensional HMM's
 % (see http://en.wikipedia.org/wiki/Baum-Welch_algorithm )
+% author: Joshua Slocum
 
+% Inputs:
+% packed_2d_guess: the initial guess for model training. See utils/pack2DHNM.m for more details
+% seq1: the data sequence that model 1 should be fitted to.
+% seq2: the data sequence that model 2 should be fitted to.
+
+% Outputs:
+% packed_trained: the trained model in packed form
+% logLs: training history of the log-likelihood of the model.
+function [packed_trained, logLs] = ...
+    hmmtrain2d(packed_guess seq1, seq2)
+
+[tr1_guess, tr2_guess, em1_guess, em2_guess] = unpack2DHMM(packed_guess)         
 CONVERGENCE_LIMIT = 1000;
 EPSILON = 1e-5;
 tr1_trained = tr1_guess;
@@ -106,6 +114,8 @@ for iter = 1:CONVERGENCE_LIMIT
         break;
     end
     old_logL = new_logL;
+
+    packed_trained = pack2DHMM(tr1_trained, tr2_trained, em1_trained, em2_trained);
 end
 
 

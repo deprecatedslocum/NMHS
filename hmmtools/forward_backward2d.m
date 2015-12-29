@@ -3,8 +3,22 @@
 % Implements the forward-backward algorithm for 2-dimensional HMM's
 % (see http://en.wikipedia.org/wiki/Forward%E2%80%93backward_algorithm ) 
 
+% Inputs:
+% packed_2d_hmm: see utils/pack2DHNM.m for more details
+% seq1: the data sequence that model 1 explains.
+% seq2: the data sequence that model 2 explains.
 
-function [forward_probabilities, backward_probabilities, normalization_factors] = forward_backward2d(tr1, tr2, em1, em2, seq1, seq2)
+
+% Outputs:
+% forward_probabilities: a 3-dimensional matrix with the calculated forward probabilities for each state of model 1, state of model 2, and timestep.
+% backward_probabilities: a 3-dimensional matrix with the calculated backward probabilities for each state of model 1, state of model 2, and timestep.
+% normalization_factors: factoor by which the forward and backward probabilities are scaled at each time step for numeric stability
+
+function [forward_probabilities, backward_probabilities, normalization_factors] = ...
+         forward_backward2d(packed_2d_hmm, seq1, seq2)
+
+  [tr1, tr2, em1, em2] = unpack2DHMM(packed_2d_hmm);
+
   num_states1 = size(tr1, 1);
   num_states2 = size(tr2, 1);  
 

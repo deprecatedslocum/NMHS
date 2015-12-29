@@ -1,12 +1,22 @@
-function [seq1, seq2, seq3, states1, states2, states3] = hmmgenerate3d(L,tr1,tr2,tr3,e1,e2,e3)
-% Analogous to hmmgenerate. Used for generating "fake" neuronal data for testing
-% hmmtrain3d. Works similar to hmmgenerate2d. There is a crucial difference which 
-% is that dimensions 1 and 2 are transposed, so that state indices can be read as 
-% [to, from, from, from]
-%
-%
-% tr1 is NxNxMxP, tr2 is MxMxPxN, tr3 is PxPxNxM
-% e1 is Nx(max # of spikes per bin), e2 is Mx(max # spikes per bin), e3 is Px
+% Given a 2d hmm model, generates a sequence of data of specified length
+% Author: Joshua Slocum
+
+% Inputs:
+% L: the length of the data sequence to be generated
+% packed_3d_hmm: the 3d hmm model with which to begin training. See utils/pack3DHMM.m for more details.
+
+
+% Outputs:
+% seq1: the emissions of model 1
+% seq2: the emissions of model 2
+% seq3: the emissions of model 3
+% states1: the state of model 1
+% states2: the state of model 2
+% states3: the state of model 3
+
+
+function [seq1, seq2, seq3, states1, states2, states3] = hmmgenerate3d(L,packed_3d_hmm)
+  [tr1, tr2, tr3,  em1, em2, em3] = unpack3DHMM(packed_3d_hmm);
 
 seq1 = zeros(1,L);
 seq2 = zeros(1,L);
@@ -15,30 +25,14 @@ states1 = zeros(1,L);
 states2 = zeros(1,L);
 states3 = zeros(1,L);
 
-% TODO - assuming inputs are valid for now
-% % tr must be square
 numStates1 = size(tr1,1); 
 numStates2 = size(tr2,1);
 numStates3 = size(tr3,1); 
-% checkTr = size(tr1,2);
-% if checkTr ~= numStates
-%     error(message('stats:hmmgenerate:BadTransitions'));
-% end
-% 
-% % number of rows of e must be same as number of states
-% checkE = size(e,1);
-% if checkE ~= numStates
-%     error(message('stats:hmmgenerate:InputSizeMismatch'));
-% end
 
 numEmissions1 = size(e1,2);
 numEmissions2 = size(e2,2);
 numEmissions3 = size(e3,2);
 
-% TODO create numberOfNeurons + 1 random sequences, numberOfNeurons for 
-% state changes, one for emission
-% statechange = rand(1,L);
-% randvals = rand(1,L);
 
 % calculate cumulative probabilities
 trc1 = cumsum(tr1, 1);
@@ -49,10 +43,6 @@ ec2 = cumsum(e2,2);
 ec3 = cumsum(e3,2);
 
 
-% TODO - assuming inputs are valid for now
-% normalize these just in case they don't sum to 1.
-% trc1 = trc1./repmat(trc1(:,end),1,numStates);
-% ec1 = ec1./repmat(ec1(:,end),1,numEmissions);
 
 % Assume that we start in state 1.
 currentstate1 = 1;

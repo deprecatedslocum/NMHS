@@ -1,3 +1,21 @@
+% Calculates the most likely state for each model at each timestep, given a set of models and sequences of observations
+% Author: Joshua Slocum
+
+% Inputs:
+% packed: the 3d hmm model with which to begin training. See utils/pack3DHMM.m for more details.
+% seq1: the data sequence that model 1 should be fitted to.
+% seq2: the data sequence that model 2 should be fitted to.
+% seq3: the data sequence that model 3 should be fitted to.
+
+% Outputs:
+% pStates1: the likelihood of model 1 being in each state at each timestep
+% pStates2: the likelihood of model 2 being in each state at each timestep
+% pStates3: the likelihood of model 3 being in each state at each timestep 
+% pSeq: the joint likelihood of model 1, 2, and 3 being in a particular pair of states at each timestep
+% fs: the forward probabilities
+% bs: the backward probabilities
+% s: the noramlization constants
+
 function [pStates1, pStates2, pStates3, pSeq, fs, bs, s] = ...
          hmmdecode3d(packed, seq1, seq2, seq3)
   [fs, bs, s] = forward_backward3d(packed, seq1, seq2, seq3);
