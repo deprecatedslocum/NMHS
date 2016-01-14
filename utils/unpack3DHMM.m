@@ -1,3 +1,17 @@
+% Unpacks a 3DHMM so that emission and transition matrices may be individually inspected
+% Author: Joshua Slocum
+
+% Inputs:
+% packed_hmm: a matrix containing all the model parameters
+
+% Outputs:
+% tr1: transfer matrix for model 1
+% tr2: transfer matrix for model 2
+% tr3: transfer matrix for model 3
+% em1: emission matrix for model 1         
+% em2: emission matrix for model 2         
+% em3: emission matrix for model 3
+
 function [tr1, tr2, tr3, em1, em2, em3] = unpack3DHMM(packed_hmm)
   states1 = packed_hmm(1,1,1); 
   states2 = packed_hmm(2,1,1); 

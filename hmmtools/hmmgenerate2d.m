@@ -8,8 +8,8 @@
 % Outputs:
 % seq1: the emissions of model 1
 % seq2: the emissions of model 2
-% states1: the state of model 1
-% states2: the state of model 2
+% states1: the states of model 1
+% states2: the states of model 2
 
 
 
