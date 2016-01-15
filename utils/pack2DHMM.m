@@ -25,4 +25,4 @@ function packed_hmm = pack2DHMM(tr1, tr2, em1, em2)
   packed_hmm(1:states1, 2:1+states1, 1:states2) = tr1;
   packed_hmm(1:states2, 2+states1:1+states1+states2, 1:states1) = tr2;
   packed_hmm(1:states1, 2+states1+states2:1+states1+states2+emissions1, 1) = em1;
-  packed_hmm(1:states1, 2+states1+states2+emissions1:1+states1+states2+emissions1+emissions2, 1) = em2;
+  packed_hmm(1:states2, 2+states1+states2+emissions1:1+states1+states2+emissions1+emissions2, 1) = em2;

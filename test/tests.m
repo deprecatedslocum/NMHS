@@ -2,6 +2,6 @@
 function tests()
   testMarkovChecking();
   testHMMChecking();
-%  testHMMCreation();
+  testHMMCreation();
 %  testHMMTraining();
 %  testConnectivity();

@@ -2,6 +2,20 @@
 % All emission matrices and transition matrices satisfy the markov property
 % All emission matrices and transition matrices agree on the number of states for their respective process
 % All transition matrices have the right number of states in the right order. 
+% Does not use packed format, because packing requires having the states right!
+
+
+%Inputs
+% tr1: transfer matrix for model 1
+% tr2: transfer matrix for model 2
+% em1: emission matrix for model 1         
+% em2: emission matrix for model 2         
+
+
+
+%Outputs
+% valid: true if the packed 3DHMM is valid
+
 
 function valid = isValid3DHMM(tr1, tr2, em1, em2)
 

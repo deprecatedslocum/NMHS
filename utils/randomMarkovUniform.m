@@ -1,5 +1,6 @@
 % Generates a markov matrix by sampling parameters from the uniform distribution.
-% All columns will sum to 1. 
+% All columns will sum to 1.
+% For a transition matrix, make sure you have dims(1) == dims(2)
 % Author: Joshua Slocum
 
 %Inputs
@@ -10,10 +11,10 @@
 
 
 function markov = randomMarkovUniform(dims)
-  if(len(dims) < 2)
+  if(length(dims) < 2)
     markov = false;
     return
-  endif
+  end   
   markov = rand(dims);
   markov = makeValidMarkov(markov);
 

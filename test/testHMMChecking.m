@@ -18,9 +18,8 @@ function testHMMChecking()
   tr2 = makeValidMarkov(rand(3, 3, 4, 2));
   tr3 = makeValidMarkov(rand(4, 4, 2, 3));
   em1 = [0.5, 0.5; 0.5, 0.5];
-  em2 = [0.3, 0.7; 0.3, 0.1; 0.4, 0.2]; 
-  em2 = em2'
-  em3 = [0.25, 0.25, 0.25, 0.25;0.25, 0.25, 0.25, 0.25]; 
+  em2 = [0.3, 0.6, 0.1; 0.3, 0.1, 0.6; 0.4, 0.2, 0.4]; 
+  em3 = [0.25, 0.2, 0.3, 0.25;0.25, 0.2, 0.3, 0.25;0.25, 0.2, 0.3, 0.25;0.25, 0.2, 0.3, 0.25];
   assert(isValid3DHMM(tr1, tr2, tr3, em1, em2, em3));
 
   %test 3d with mismatched dimensions
