@@ -1,0 +1,3 @@
+**************************************** TODO ****************************************
+
+MIT license seems like a good default if we want to open source. LGPL could also work. If we get a patent then we might need to ask the MIT TLO office what to do. 

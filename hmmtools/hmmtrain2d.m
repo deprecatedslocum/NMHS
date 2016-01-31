@@ -11,11 +11,19 @@
 % packed_trained: the trained model in packed form
 % logLs: training history of the log-likelihood of the model.
 function [packed_trained, logLs] = ...
-    hmmtrain2d(packed_guess seq1, seq2)
+    hmmtrain2d(packed_guess, seq1, seq2, varargin)
 
-[tr1_guess, tr2_guess, em1_guess, em2_guess] = unpack2DHMM(packed_guess)         
-CONVERGENCE_LIMIT = 1000;
+[tr1_guess, tr2_guess, em1_guess, em2_guess] = unpack2DHMM(packed_guess);
+
+CONVERGENCE_LIMIT = 500;
 EPSILON = 1e-5;
+if(length(varargin) >= 1)
+  CONVERGENCE_LIMIT = varargin{1};
+end
+if(length(varargin) >= 2)
+  EPSILON = varargin{2};
+end
+
 tr1_trained = tr1_guess;
 tr2_trained = tr2_guess;
 em1_trained = em1_guess;
@@ -27,7 +35,7 @@ num_emissions2 = size(em2_guess, 2);
 num_events = length(seq1);
 
 
-[forward_probabilities, backward_probabilities, normalization_factors] = forward_backward2d(tr1_guess, tr2_guess, em1_guess, em2_guess, seq1, seq2);
+[forward_probabilities, backward_probabilities, normalization_factors] = forward_backward2d(packed_guess, seq1, seq2);
 old_logL = sum(log(normalization_factors));
 logLs = [old_logL];
 
@@ -104,8 +112,12 @@ for iter = 1:CONVERGENCE_LIMIT
     end
     em2_trained = big_h ./ repmat(sum(big_h, 2), 1, num_emissions2);
     %normalize coefficients to 1
+
+
+    packed_trained = pack2DHMM(tr1_trained, tr2_trained, em1_trained, em2_trained);
     
-    [forward_probabilities, backward_probabilities, normalization_factors] = forward_backward2d(tr1_trained, tr2_trained, em1_trained, em2_trained, seq1(2:length(seq1)), seq2(2:length(seq2)));
+    [forward_probabilities, backward_probabilities, normalization_factors] = forward_backward2d(packed_trained, seq1(2:length(seq1)), seq2(2:length(seq2)));
+
     new_logL = sum(log(normalization_factors));
     logLs(iter+1) = new_logL;
     if(abs((new_logL - old_logL)/new_logL) < EPSILON)
@@ -114,8 +126,6 @@ for iter = 1:CONVERGENCE_LIMIT
         break;
     end
     old_logL = new_logL;
-
-    packed_trained = pack2DHMM(tr1_trained, tr2_trained, em1_trained, em2_trained);
 end
 
 

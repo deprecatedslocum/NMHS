@@ -23,9 +23,9 @@ function valid = isValid3DHMM(tr1, tr2, tr3,  em1, em2, em3)
   valid = isMarkov(tr1); 
   valid = valid & isMarkov(tr2);
   valid = valid & isMarkov(tr3);
-  valid = valid & isMarkov(em1'); 
-  valid = valid & isMarkov(em2');
-  valid = valid & isMarkov(em3');
+  valid = valid & isMarkov(em1); 
+  valid = valid & isMarkov(em2);
+  valid = valid & isMarkov(em3);
 
   valid = valid & (size(tr1, 1) == size(em1, 1));
   valid = valid & (size(tr2, 1) == size(em2, 1));

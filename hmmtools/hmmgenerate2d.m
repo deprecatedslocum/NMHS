@@ -15,7 +15,7 @@
 
 function [seq1, seq2, states1, states2] = hmmgenerate2d(L,packed_2d_hmm)
 
-[tr1, tr2, em1, em2] = unpack2DHMM(packed_2d_hmm);
+[tr1, tr2, e1, e2] = unpack2DHMM(packed_2d_hmm);
 
          
 seq1 = zeros(1,L);
@@ -44,7 +44,7 @@ currentstate2 = ceil(rand*numStates2);
 % main loop 
 for count = 1:L
     % calculate state transition for n1
-    stateVal = rand; %TODO - make random vector like in original code?
+    stateVal = rand; 
     state1 = 1;
     for innerState = numStates1-1:-1:1
         trc = trc1(:,:,currentstate2);
@@ -55,7 +55,7 @@ for count = 1:L
     end
     
     % calculate state transition for n2
-    stateVal = rand; %TODO-make rand vector like in original code=>faster?
+    stateVal = rand; 
     state2 = 1;
     for innerState = numStates2-1:-1:1
         trc = trc2(:,:,currentstate1);

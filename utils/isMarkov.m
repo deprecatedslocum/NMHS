@@ -12,8 +12,8 @@
 
 function bool = isMarkov(matrix)
   bool = false;
-  shouldBeOnes = sum(matrix,1);
+  shouldBeOnes = sum(matrix,2);
   diff = ones(size(shouldBeOnes)) - shouldBeOnes;
-  bool = all(diff(:) <= eps(1));
+  bool = all(abs(diff(:)) <= eps(1));
   bool = bool & all(matrix(:) >= 0);
 

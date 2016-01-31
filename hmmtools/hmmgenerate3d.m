@@ -29,18 +29,18 @@ numStates1 = size(tr1,1);
 numStates2 = size(tr2,1);
 numStates3 = size(tr3,1); 
 
-numEmissions1 = size(e1,2);
-numEmissions2 = size(e2,2);
-numEmissions3 = size(e3,2);
+numEmissions1 = size(em1,2);
+numEmissions2 = size(em2,2);
+numEmissions3 = size(em3,2);
 
 
 % calculate cumulative probabilities
-trc1 = cumsum(tr1, 1);
-trc2 = cumsum(tr2, 1);
-trc3 = cumsum(tr3, 1);
-ec1 = cumsum(e1,2);
-ec2 = cumsum(e2,2);
-ec3 = cumsum(e3,2);
+trc1 = cumsum(tr1, 2);
+trc2 = cumsum(tr2, 2);
+trc3 = cumsum(tr3, 2);
+ec1 = cumsum(em1,2);
+ec2 = cumsum(em2,2);
+ec3 = cumsum(em3,2);
 
 
 
@@ -52,10 +52,10 @@ currentstate3 = 1;
 % main loop 
 for count = 1:L
     % calculate state transition for n1
-    stateVal = rand; %TODO - make random vector like in original code?
+    stateVal = rand; 
     state1 = 1;
     for innerState = numStates1-1:-1:1
-        trc = trc1(:,currentstate1, currentstate2, currentstate3);
+        trc = trc1(currentstate1, :, currentstate2, currentstate3);
         if stateVal > trc(innerState)
             state1 = innerState + 1;
             break;
@@ -63,10 +63,10 @@ for count = 1:L
     end
 
     % calculate state transition for n2
-    stateVal = rand; %TODO - make random vector like in original code?
+    stateVal = rand; 
     state2 = 1;
     for innerState = numStates2-1:-1:1
-        trc = trc2(:,currentstate2, currentstate3, currentstate1);
+        trc = trc2(currentstate2, :, currentstate3, currentstate1);
         if stateVal > trc(innerState)
             state2 = innerState + 1;
             break;
@@ -74,10 +74,10 @@ for count = 1:L
     end
 
     % calculate state transition for n3
-    stateVal = rand; %TODO - make random vector like in original code?
+    stateVal = rand; 
     state3 = 1;
     for innerState = numStates3-1:-1:1
-        trc = trc3(:,currentstate3, currentstate1, currentstate2);
+        trc = trc3(currentstate3, :, currentstate1, currentstate2);
         if stateVal > trc(innerState)
             state3 = innerState + 1;
             break;

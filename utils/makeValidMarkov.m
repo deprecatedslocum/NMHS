@@ -11,4 +11,4 @@
 
 function markov = makeValidMarkov(matrix)
   matrix(matrix < 0) = 0;
-  markov = bsxfun(@rdivide, matrix, sum(matrix, 1));
+  markov = bsxfun(@rdivide, matrix, sum(matrix, 2));

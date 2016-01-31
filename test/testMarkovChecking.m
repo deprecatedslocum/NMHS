@@ -3,12 +3,12 @@ function checkMarkovTesting()
           1.5, 0.8];
   assert(~isMarkov(mat1), 'ERROR: did not reject negative probability');
 
-  mat1 = [0.1, 0.2; ...
-          0.9, 0.8];
+  mat1 = [0.1, 0.9; ...
+          0.2, 0.8];
   assert(isMarkov(mat1), 'ERROR: rejected valid markov');
-  mat2 = [0.1, 0.2; ...
+  mat2 = [0.1, 0.9; ...
           0.9, 0.2];
-  assert(~isMarkov(mat2), 'ERROR: did not reject markov with invalid column 2');
+  assert(~isMarkov(mat2), 'ERROR: did not reject markov with invalid row 2');
 
   mat2 = makeValidMarkov(mat2);
   assert(isMarkov(mat1), 'ERROR: makeValidMarkov did not produce a valid markov');
