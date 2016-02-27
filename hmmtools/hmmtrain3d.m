@@ -18,7 +18,7 @@ function [packed3DHMM, logLs] = ...
 [tr1_guess, tr2_guess, tr3_guess, em1_guess, em2_guess, em3_guess] = ...
     unpack3DHMM(packed_guess);
 
-CONVERGENCE_LIMIT = 500;
+CONVERGENCE_LIMIT = 3;
 EPSILON = 1e-5;
 if(length(varargin) >= 1)
   CONVERGENCE_LIMIT = varargin{1};
@@ -130,21 +130,21 @@ for iter = 1:CONVERGENCE_LIMIT
     
     for e = 1:num_emissions1
         pos = find(seq1 == e);
-        big_e(:, e) = sum(sum(sum(fb_products(:,:,:,pos), 4), 3), 2)
+        big_e(:, e) = sum(sum(sum(fb_products(:,:,:,pos), 4), 3), 2);
     end
-    em1_trained = big_e ./ repmat(sum(big_e, 2), 1, num_emissions1)
+    em1_trained = big_e ./ repmat(sum(big_e, 2), 1, num_emissions1);
     %normalize coefficients to 1
     for e = 1:num_emissions2
         pos = find(seq2 == e);
-        big_h(:, e) = squeeze(sum(sum(sum(fb_products(:,:,:,pos), 4), 3), 1))'
+        big_h(:, e) = squeeze(sum(sum(sum(fb_products(:,:,:,pos), 4), 3), 1))';
     end
-    em2_trained = big_h ./ repmat(sum(big_h, 2), 1, num_emissions2)
+    em2_trained = big_h ./ repmat(sum(big_h, 2), 1, num_emissions2);
     %normalize coefficients to 1
     for e = 1:num_emissions3
         pos = find(seq3 == e);
-        big_q(:, e) = squeeze(sum(sum(sum(fb_products(:,:,:,pos), 4), 2), 1))'
+        big_q(:, e) = squeeze(sum(sum(sum(fb_products(:,:,:,pos), 4), 2), 1))';
     end
-    em3_trained = big_q ./ repmat(sum(big_q, 2), 1, num_emissions3)
+    em3_trained = big_q ./ repmat(sum(big_q, 2), 1, num_emissions3);
     %normalize coefficients to 1
     
     [forward_probabilities, backward_probabilities, normalization_factors] = ...
