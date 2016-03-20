@@ -1,9 +1,9 @@
-Welcome to the NMHS data processing toolbox. This code was used for analyzing data in the paper “Analysis of Complex Neural Networks with Non-Linear Multi-Dimensional Hidden State Models”. 
+Welcome to the NMHS data processing toolbox. This code was used for analyzing data in the paper “Analysis of Complex Networks with Non-Linear Multi-Dimensional Hidden State Models”. 
 Authors: Joshua Slocum and Danil Tyulmankov
 Citation: 
 
 The newest version of the code can be found at:
-https://github.com/jfslocum/NMHS 
+https://github.com/jfslocum/NMHS
 
 FORMATTING CONVENTIONS
 - For brevity, all functions use a packed format for input and output of models. Packing and unpacking functions are in the utils folder
