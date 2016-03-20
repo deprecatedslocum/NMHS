@@ -1,21 +1,12 @@
-% Author: Danil Tyulmankov
-% Copyright 2016 Danil Tyulmankov, MIT
 function [A, B, C, J, K, L] = checkDims3d(trA, trB, trC, eA, eB, eC)
 % Makes sure the transition matrices and, if provided, emission matrices
 % are compatible with each other in terms of dimensions. In other words:
+% - trA is AxAxBxC, trB is BxBxCxA, trC is CxCxAxB
+% - eA is AxJ, eB is BxK, eC is CxL
+% Note: Does not check whether matrices satisfy the Markov property
 %
-% trA is AxAxBxC, trB is BxBxCxA, trC is CxCxAxB
-%
-% eA is AxJ, eB is BxK, eC is CxL
-% 
-% Does not check whether matrices satisfy the Markov property
-
-%TODO: rewrite this so that it throws exceptions instead
-%
-%TODO: suggest reordering input if user did: 
-% (trA, trC, trB) instead of (trA,trB,trC) 
-% or (B,A,C) instead of (B,C,A)
-% or (C,B,A) instead of (C,A,B) 
+% Authors: Danil Tyulmankov, Joshua Slocum, Alexander Friedman
+% Copyright 2016 Danil Tyulmankov, MIT
 
 % -- check TR matrices -- 
 if ndims(trA) ~= 4 || ndims(trB) ~= 4 || ndims(trC) ~= 4
