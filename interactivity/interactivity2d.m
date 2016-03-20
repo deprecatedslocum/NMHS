@@ -30,9 +30,8 @@ function [average, inEachState, perNeighborStatePair, detail] = interactivity2d(
 % Authors: Danil Tyulmankov, Joshua Slocum, Alexander Friedman; Copyright 2016
 
 
-%% Calculate the values
-%make sure dimensions match up
-[N,M] = checkDims(trA, trB);
+% --  Calculate the values
+[N,M] = checkDims(trA, trB); %make sure dimensions match up
 
 detail = NaN(N, nchoosek(M, 2));
 pairNumber = 0;
@@ -61,7 +60,7 @@ perNeighborStatePair = mean(detail, 1);
 average = mean(inEachState);
 
 
-%% Visualize the data
+% --  Visualize the data
 if nargin > 2
     if ~plotthis
         return

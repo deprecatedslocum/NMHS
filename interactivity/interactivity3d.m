@@ -32,7 +32,7 @@ function [A_B, A_C, A_BC] = interactivity3d(trA, trB, trC, plotthis)
 % Authors: Danil Tyulmankov, Joshua Slocum, Alexander Friedman; Copyright 2016
 
 
-
+% -- Calculate interactivity
 [A, B, C] = checkDims3d(trA, trB, trC);
 
 A_B = zeros(1, size(trA,4));
@@ -50,7 +50,7 @@ end
 % not listen to their combination, which gives A_BC = 0
 A_BC = sqrt(mean(A_B)*mean(A_C));
 
-%% Plot
+% -- Plot
 if nargin > 3
     if ~plotthis
         return
