@@ -1,5 +1,6 @@
-% Given a 2d hmm model, generates a sequence of data of specified length
+% Given a 3d hmm model, generates a sequence of data of specified length
 % Author: Joshua Slocum
+% Copyright 2016 Joshua Slocum, MIT
 
 % Inputs:
 % L: the length of the data sequence to be generated

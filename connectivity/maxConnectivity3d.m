@@ -1,3 +1,5 @@
+% Author: Danil Tyulmankov
+% Copyright 2016 Danil Tyulmankov, MIT
 function [A_B, A_C] = maxConnectivity3d(trA, trB, trC)
 % Calculates connectivity by taking the max (instad of mean) of the 
 % connectivities across the states of A (see maxConnectivity.m). 

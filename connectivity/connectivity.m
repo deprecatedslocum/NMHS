@@ -1,3 +1,5 @@
+% Author: Danil Tyulmankov
+% Copyright 2016 Danil Tyulmankov, MIT
 function [average, inEachState, perNeighborStatePair, detail] = connectivity(trA, trB, plotthis)
 % Looks at the level of connectivity between two neurons by comparing the
 % layers of the TR matrices. If all the layers are identical, the neurons

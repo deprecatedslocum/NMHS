@@ -1,3 +1,4 @@
+% Copyright 2016 Joshua Slocum, MIT
 function checkMarkovTesting()
   mat1 = [-0.5, 0.2; ...
           1.5, 0.8];

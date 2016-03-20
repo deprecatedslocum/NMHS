@@ -1,5 +1,6 @@
 % Calculates the most likely state for each model at each timestep, given a set of models and sequences of observations
 % Author: Joshua Slocum
+% Copyright 2016 Joshua Slocum, MIT
 
 % Inputs:
 % packed: the 3d hmm model with which to begin training. See utils/pack3DHMM.m for more details.

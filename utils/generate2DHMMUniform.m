@@ -1,4 +1,7 @@
 % Generate a full 2DHMM model by sampling each parameter from the uniform distribution and then enforcing the markov property.
+% Author: Joshua Slocum
+% Copyright 2016 Joshua Slocum, MIT
+
 
 %Inputs
 % numStates1: number of states for model 1

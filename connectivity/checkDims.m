@@ -1,3 +1,7 @@
+% Author: Danil Tyulmankov
+% Copyright 2016 Danil Tyulmankov, MIT
+
+
 function [N, M, J, K] = checkDims(tr1, tr2, e1, e2)
 %tr1 is NxNxM, tr2 is MxMxN, e1 is NxJ, e2 is MxK
 

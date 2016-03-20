@@ -2,6 +2,8 @@
 % All columns will sum to 1.
 % For a transition matrix, make sure you have dims(1) == dims(2)
 % Author: Joshua Slocum
+% Copyright 2016 Joshua Slocum, MIT
+
 
 %Inputs
 % dims: the length of each dimension.

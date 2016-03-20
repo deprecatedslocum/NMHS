@@ -1,3 +1,5 @@
+% Author: Danil Tyulmankov
+% Copyright 2016 Danil Tyulmankov, MIT
 function c = maxConnectivity_summary(tr1, tr2, tr3)
 % Entry c(i,j) is "i listens to j," or in less precise terms "j causes i."
 % Connectivity calculated as the maximum connectivity across all of the

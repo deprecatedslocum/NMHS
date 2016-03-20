@@ -1,3 +1,4 @@
+% Copyright 2016 Joshua Slocum, MIT
 function testHMMCreation()
   %test making of markovs
   mat1 = randomMarkovUniform([2, 3, 3, 4]);

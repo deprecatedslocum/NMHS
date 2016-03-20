@@ -1,5 +1,7 @@
 % Given a set of transfer and emission matrices corresponding to a 2D HMM model, packs them into a singe matrix.
 % Author: Joshua Slocum
+% Copyright 2016 Joshua Slocum, MIT
+
 
 % Inputs:
 % tr1: transfer matrix for model 1

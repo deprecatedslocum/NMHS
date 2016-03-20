@@ -1,3 +1,4 @@
+% Copyright 2016 Joshua Slocum, MIT
 function testHMMTraining()
   % Make a 2D HMM and generate some data
   numStates1 = 3; numStates2 = 2; numEmissions1 = 4; numEmissions2 = 3;

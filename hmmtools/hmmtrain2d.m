@@ -1,6 +1,7 @@
 % Implements the Baum-Welch algorithm for 2-dimensional HMM's
 % (see http://en.wikipedia.org/wiki/Baum-Welch_algorithm )
 % author: Joshua Slocum
+% Copyright 2016 Joshua Slocum, MIT
 
 % Inputs:
 % packed_2d_guess: the initial guess for model training. See utils/pack2DHNM.m for more details

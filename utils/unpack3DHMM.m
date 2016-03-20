@@ -1,5 +1,7 @@
 % Unpacks a 3DHMM so that emission and transition matrices may be individually inspected
 % Author: Joshua Slocum
+% Copyright 2016 Joshua Slocum, MIT
+
 
 % Inputs:
 % packed_hmm: a matrix containing all the model parameters

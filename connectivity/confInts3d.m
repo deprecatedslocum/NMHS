@@ -1,3 +1,5 @@
+% Author: Danil Tyulmankov
+% Copyright 2016 Danil Tyulmankov, MIT
 function [ci_overall, ci_dir, avg_overall, avg_dir] = confInts3d(tr1, tr2, tr3, e1, e2, e3, ...
     tr1g, tr2g, tr3g, e1g, e2g, e3g, L, N)
 % Calculates confidence intervals for connectivities via boostrapping. Answers

@@ -1,6 +1,7 @@
 % Implements the forward-backward  algorithm for 3-dimensional HMM's
 % (see http://en.wikipedia.org/wiki/Forward%E2%80%93backward_algorithm ) 
 % author: Joshua Slocum
+% Copyright 2016 Joshua Slocum, MIT
          
 % Inputs:
 % packed_3d_hmm: the 3d hmm model with which to begin training. See utils/pack3DHMM.m for more details.

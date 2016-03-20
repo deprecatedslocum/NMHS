@@ -2,6 +2,8 @@
 % to 1, within a margin of error of eps(1)). Returns false otherwise. Works for
 % higher order matrices, e.g. 2DHMM transition matrices. 
 % Author: Joshua Slocum
+% Copyright 2016 Joshua Slocum, MIT
+
 
 %Inputs
 % matrix: the matrix to be normalized to satisfy the markov property

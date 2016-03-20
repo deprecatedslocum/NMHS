@@ -1,3 +1,5 @@
+% Author: Danil Tyulmankov
+% Copyright 2016 Danil Tyulmankov, MIT
 function [A, B, C, J, K, L] = checkDims3d(trA, trB, trC, eA, eB, eC)
 % Makes sure the transition matrices and, if provided, emission matrices
 % are compatible with each other in terms of dimensions. In other words:

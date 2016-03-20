@@ -1,3 +1,5 @@
+% Copyright 2016 Joshua Slocum, MIT
+
 function testHMMChecking()
   %test 2d with matched dimensions
   tr1 = makeValidMarkov(rand(3,3,2));

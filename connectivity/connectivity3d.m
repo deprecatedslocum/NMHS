@@ -1,3 +1,5 @@
+% Author: Danil Tyulmankov
+% Copyright 2016 Danil Tyulmankov, MIT
 function [A_B, A_C, A_BC] = connectivity3d(trA, trB, trC, plotthis)
 % Looks at how much neuron A listens to neurons B and C by comparing the
 % layers of the transition matrix of neuron A. (trB and trC inputs are only

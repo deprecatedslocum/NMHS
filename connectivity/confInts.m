@@ -1,3 +1,5 @@
+% Author: Danil Tyulmankov
+% Copyright 2016 Danil Tyulmankov, MIT
 function [ci12, ci21, avg12, avg21] = confInts(tr1, tr2, e1, e2, ...
     tr1_guess, tr2_guess, em1_guess, em2_guess, L, N)
 % Calculates confidence intervals for connectivities via boostrapping. Answers

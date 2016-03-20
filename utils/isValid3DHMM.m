@@ -3,6 +3,9 @@
 % All emission matrices and transition matrices agree on the number of states for their respective process
 % All transition matrices have the right number of states in the right order.
 % Does not use packed format, because packing requires having the states right!
+% Author: Joshua Slocum
+% Copyright 2016 Joshua Slocum, MIT
+
 
 %Inputs
 % tr1: transfer matrix for model 1

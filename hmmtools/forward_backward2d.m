@@ -1,5 +1,6 @@
 % forward_backward2d.m
 % Author: Joshua Slocum
+% Copyright 2016 Joshua Slocum, MIT
 % Implements the forward-backward algorithm for 2-dimensional HMM's
 % (see http://en.wikipedia.org/wiki/Forward%E2%80%93backward_algorithm ) 
 
