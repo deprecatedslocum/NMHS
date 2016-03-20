@@ -2,7 +2,7 @@ function [packed3DHMM, logLs] = ...
     static3d(packed_guess, seq1, seq2, seq3, varargin)
 % Implements the Baum-Welch algorithm for static 2-dimensional HMMs
 %
-% Authors: Joshua Slocum, Danil Tyulmankov, Alexander Friedman
+% Authors: Joshua Slocum, Danil Tyulmankov, Alexander Friedman; Copyright 2016
 
 
 [tr1_guess, tr2_guess, tr3_guess, em1_guess, em2_guess, em3_guess] = unpack3DHMM(packed_guess);

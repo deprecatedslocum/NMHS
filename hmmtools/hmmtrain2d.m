@@ -1,28 +1,28 @@
+function [packed_trained, logLs] = ...
+    hmmtrain2d(packed_guess, seq1, seq2, varargin)
 % Implements the Baum-Welch algorithm for 2-dimensional HMM's
 % (see http://en.wikipedia.org/wiki/Baum-Welch_algorithm )
-% author: Joshua Slocum
-% Copyright 2016 Joshua Slocum, MIT
-
+%
 % Inputs:
 % packed_2d_guess: the initial guess for model training. See utils/pack2DHNM.m for more details
 % seq1: the data sequence that model 1 should be fitted to.
 % seq2: the data sequence that model 2 should be fitted to.
-
+%
 % Outputs:
 % packed_trained: the trained model in packed form
 % logLs: training history of the log-likelihood of the model.
-function [packed_trained, logLs] = ...
-    hmmtrain2d(packed_guess, seq1, seq2, varargin)
+%
+% Authors: Joshua Slocum, Danil Tyulmankov, Alexander Friedman; Copyright 2016
 
 [tr1_guess, tr2_guess, em1_guess, em2_guess] = unpack2DHMM(packed_guess);
 
 CONVERGENCE_LIMIT = 500;
 EPSILON = 1e-5;
 if(length(varargin) >= 1)
-  CONVERGENCE_LIMIT = varargin{1};
+    CONVERGENCE_LIMIT = varargin{1};
 end
 if(length(varargin) >= 2)
-  EPSILON = varargin{2};
+    EPSILON = varargin{2};
 end
 
 tr1_trained = tr1_guess;
@@ -113,12 +113,12 @@ for iter = 1:CONVERGENCE_LIMIT
     end
     em2_trained = big_h ./ repmat(sum(big_h, 2), 1, num_emissions2);
     %normalize coefficients to 1
-
-
+    
+    
     packed_trained = pack2DHMM(tr1_trained, tr2_trained, em1_trained, em2_trained);
     
     [forward_probabilities, backward_probabilities, normalization_factors] = forward_backward2d(packed_trained, seq1(2:length(seq1)), seq2(2:length(seq2)));
-
+    
     new_logL = sum(log(normalization_factors));
     logLs(iter+1) = new_logL;
     if(abs((new_logL - old_logL)/new_logL) < EPSILON)

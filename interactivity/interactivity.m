@@ -2,8 +2,8 @@ function c = interactivity(tr1, tr2, tr3)
 % Wrapper for interactivity2d.m and interactivity3d.m Returns a summary of 
 % pairwise interactivities. Entry c(i,j) is "j affects i"
 %
-% Authors: Danil Tyulmankov, Joshua Slocum, Alexander Friedman
-% Copyright 2016 Danil Tyulmankov, MIT
+% Authors: Danil Tyulmankov, Joshua Slocum, Alexander Friedman; Copyright 2016
+
 
 
 if nargin == 3

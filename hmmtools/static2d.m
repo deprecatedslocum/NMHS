@@ -2,7 +2,7 @@ function [tr1_trained, tr2_trained, em1_trained, em2_trained, logLs] = ...
     static2d(tr1_guess, tr2_guess, em1_guess, em2_guess, seq1, seq2, varargin)
 % Implements the Baum-Welch algorithm for static 2-dimensional HMMs
 %
-% Authors: Joshua Slocum, Danil Tyulmankov, Alexander Friedman
+% Authors: Joshua Slocum, Danil Tyulmankov, Alexander Friedman; Copyright 2016
 
 
 CONVERGENCE_LIMIT = 1000;

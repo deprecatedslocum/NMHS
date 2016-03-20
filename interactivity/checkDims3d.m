@@ -5,8 +5,8 @@ function [A, B, C, J, K, L] = checkDims3d(trA, trB, trC, eA, eB, eC)
 % - eA is AxJ, eB is BxK, eC is CxL
 % Note: Does not check whether matrices satisfy the Markov property
 %
-% Authors: Danil Tyulmankov, Joshua Slocum, Alexander Friedman
-% Copyright 2016 Danil Tyulmankov, MIT
+% Authors: Danil Tyulmankov, Joshua Slocum, Alexander Friedman; Copyright 2016
+
 
 % -- check TR matrices -- 
 if ndims(trA) ~= 4 || ndims(trB) ~= 4 || ndims(trC) ~= 4

@@ -27,8 +27,8 @@ function [average, inEachState, perNeighborStatePair, detail] = interactivity2d(
 %                        The order for x&y pairs in the vector is as follows:
 %                        1&2,1&3,...,1&M,2&3,...2&M,...,(M-1)&M                       
 %
-% Authors: Danil Tyulmankov, Joshua Slocum, Alexander Friedman
-% Copyright 2016 Danil Tyulmankov, MIT
+% Authors: Danil Tyulmankov, Joshua Slocum, Alexander Friedman; Copyright 2016
+
 
 %% Calculate the values
 %make sure dimensions match up

@@ -29,8 +29,8 @@ function [A_B, A_C, A_BC] = interactivity3d(trA, trB, trC, plotthis)
 %
 % See interactivity2d.m for additional information.
 %
-% Authors: Danil Tyulmankov, Joshua Slocum, Alexander Friedman
-% Copyright 2016 Danil Tyulmankov, MIT
+% Authors: Danil Tyulmankov, Joshua Slocum, Alexander Friedman; Copyright 2016
+
 
 
 [A, B, C] = checkDims3d(trA, trB, trC);
