@@ -1,4 +1,4 @@
-Welcome to the NMHS data processing toolbox. This code was used for analyzing data in the paper “Analysis of Complex Networks with Non-Linear Multi-Dimensional Hidden State Models”. 
+Welcome to the NMHS data processing toolbox. This code was used for analyzing data in the paper “Analysis of Neural Circuits with Non-Linear Multi-Dimensional Hidden State Models”. 
 Authors: Joshua Slocum and Danil Tyulmankov
 Citation: 
 
