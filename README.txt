@@ -11,7 +11,9 @@ FORMATTING CONVENTIONS
 - Emission matrices follow a pattern of "state, emission": em(s, e) is the likelihood of emitting 'e' given state 's'. Note that this means all columns must sum to 1. 
 - All data sequences are assumed to be row-vectors. 
 
-%TODO: example?
 
->> addpath(genpath($path_to_NMHS))
->> 
+
+LICENSE AGREEMENT
+M.I.T. desires to aid the academic and non-commercial research community while also raising awareness of our technology for potential commercial licensing and therefore agrees herein to grant a limited copyright license to the copyright-protected software for research and non-commercial purposes only, reserving and retaining all ownership rights and license in and to the intellectual property for all other uses.
+ 
+Thus, subject to the terms herein, M.I.T.  grants a royalty-free, non-transferable, non-exclusive license under its copyrights to use, reproduce, display, perform and modify the software solely for non-commercial research and/or academic testing purposes.   In order to obtain any other license rights, including the right to use the software or filed patents for commercial purposes, you must contact the M.I.T. Technology Licensing Office and enter into additional license agreements with M.I.T.
