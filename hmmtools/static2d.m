@@ -1,30 +1,12 @@
-function [packed_trained, logLs] = ...
-    hmmtrain2d(packed_guess, seq1, seq2, varargin)
-% Implements the Baum-Welch algorithm for 2-dimensional HMM's
-% (see http://en.wikipedia.org/wiki/Baum-Welch_algorithm )
-%
-% Inputs:
-% packed_2d_guess: the initial guess for model training. See utils/pack2DHNM.m for more details
-% seq1: the data sequence that model 1 should be fitted to.
-% seq2: the data sequence that model 2 should be fitted to.
-%
-% Outputs:
-% packed_trained: the trained model in packed form
-% logLs: training history of the log-likelihood of the model.
+function [tr1_trained, tr2_trained, em1_trained, em2_trained, logLs] = ...
+    static2d(tr1_guess, tr2_guess, em1_guess, em2_guess, seq1, seq2, varargin)
+% Implements the Baum-Welch algorithm for static 2-dimensional HMMs
 %
 % Authors: Joshua Slocum, Danil Tyulmankov, Alexander Friedman; Copyright 2016
 
-[tr1_guess, tr2_guess, em1_guess, em2_guess] = unpack2DHMM(packed_guess);
 
-CONVERGENCE_LIMIT = 500;
+CONVERGENCE_LIMIT = 1000;
 EPSILON = 1e-5;
-if(length(varargin) >= 1)
-    CONVERGENCE_LIMIT = varargin{1};
-end
-if(length(varargin) >= 2)
-    EPSILON = varargin{2};
-end
-
 tr1_trained = tr1_guess;
 tr2_trained = tr2_guess;
 em1_trained = em1_guess;
@@ -35,8 +17,9 @@ num_emissions1 = size(em1_guess, 2);
 num_emissions2 = size(em2_guess, 2);
 num_events = length(seq1);
 
+suppress_connection = (length(varargin) > 0 ) && varargin{1};
 
-[forward_probabilities, backward_probabilities, normalization_factors] = forward_backward2d(packed_guess, seq1, seq2);
+[forward_probabilities, backward_probabilities, normalization_factors] = forward_backward2d(tr1_guess, tr2_guess, em1_guess, em2_guess, seq1, seq2);
 old_logL = sum(log(normalization_factors));
 logLs = [old_logL];
 
@@ -82,8 +65,8 @@ for iter = 1:CONVERGENCE_LIMIT
     big_psi = log(squeeze(sum(little_chi, 3))); %for a given t, P(k,l,j | X,Y)
     
     for k = 2:num_events
-        big_pi(:,:,:,t) = big_pi(:,:,:,t) - repmat(fb_products(:,:,t), [1, 1, num_states1]);
-        big_psi(:,:,:,t) = big_psi(:,:,:,t) - repmat(fb_products(:,:,t), [1, 1, num_states2]);
+        big_pi(:,:,:,t) = big_pi(:,:,:,t) - repmat(fb_products(:,:,t), 1, 1, num_states1);
+        big_psi(:,:,:,t) = big_psi(:,:,:,t) - repmat(fb_products(:,:,t), 1, 1, num_states2);
     end
     
     big_pi(isnan(big_pi)) = 0;
@@ -91,13 +74,15 @@ for iter = 1:CONVERGENCE_LIMIT
     
     tr1_trained = sum(exp(big_pi), 4);
     tr1_trained = permute(tr1_trained, [1 3 2]); %ijk->ikj
-    tr1_trained = tr1_trained ./ repmat(sum(tr1_trained, 2), [1, num_states1, 1]);
+    tr1_trained = tr1_trained ./ repmat(sum(tr1_trained, 2), 1, num_states1, 1);
     
     tr2_trained = sum(exp(big_psi), 4);
     tr2_trained = permute(tr2_trained, [2, 3, 1]); %klj -> ljk
-    tr2_trained = tr2_trained ./ repmat(sum(tr2_trained, 2), [1, num_states2, 1]);
+    tr2_trained = tr2_trained ./ repmat(sum(tr2_trained, 2), 1, num_states2, 1);
     
-    
+    if(suppress_connection)
+        tr1_trained = repmat(sum(tr1_trained, 3)/num_states2, 1, 1, num_states2);
+    end
     
     big_e = zeros(num_states1, num_emissions1);
     big_h = zeros(num_states2, num_emissions2);
@@ -114,11 +99,7 @@ for iter = 1:CONVERGENCE_LIMIT
     em2_trained = big_h ./ repmat(sum(big_h, 2), 1, num_emissions2);
     %normalize coefficients to 1
     
-    
-    packed_trained = pack2DHMM(tr1_trained, tr2_trained, em1_trained, em2_trained);
-    
-    [forward_probabilities, backward_probabilities, normalization_factors] = forward_backward2d(packed_trained, seq1(2:length(seq1)), seq2(2:length(seq2)));
-    
+    [forward_probabilities, backward_probabilities, normalization_factors] = forward_backward2d(tr1_trained, tr2_trained, em1_trained, em2_trained, seq1(2:length(seq1)), seq2(2:length(seq2)));
     new_logL = sum(log(normalization_factors));
     logLs(iter+1) = new_logL;
     if(abs((new_logL - old_logL)/new_logL) < EPSILON)

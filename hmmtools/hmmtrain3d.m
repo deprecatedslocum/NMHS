@@ -1,31 +1,30 @@
+function [packed3DHMM, logLs] = ...
+    hmmtrain3d(packed_guess, seq1, seq2, seq3, varargin)
 % Implements the Baum-Welch algorithm for 3-dimensional HMM's
-% (see http://en.wikipedia.org/wiki/Baum-Welch_algorithm )
-% author: Joshua Slocum
-% Copyright 2016 Joshua Slocum, MIT
-
+% (see http://en.wikipedia.org/wiki/Baum-Welch_algorithm)
+%
 % Inputs:
 % packed_guess: the 3d hmm model with which to begin training. See utils/pack3DHMM.m for more details.
 % seq1: the data sequence that model 1 should be fitted to.
 % seq2: the data sequence that model 2 should be fitted to.
 % seq3: the data sequence that model 3 should be fitted to.
-
+%
 % Outputs:
 % packed3DHMM: the trained model in packed form
 % logLs: training history of the log-likelihood of the model.
+%
+% Authors: Joshua Slocum, Danil Tyulmankov, Alexander Friedman; Copyright 2016
 
-function [packed3DHMM, logLs] = ...
-    hmmtrain3d(packed_guess, seq1, seq2, seq3, varargin)
-         
 [tr1_guess, tr2_guess, tr3_guess, em1_guess, em2_guess, em3_guess] = ...
     unpack3DHMM(packed_guess);
 
 CONVERGENCE_LIMIT = 3;
 EPSILON = 1e-5;
 if(length(varargin) >= 1)
-  CONVERGENCE_LIMIT = varargin{1};
+    CONVERGENCE_LIMIT = varargin{1};
 end
 if(length(varargin) >= 2)
-  EPSILON = varargin{2};
+    EPSILON = varargin{2};
 end
 
 
@@ -89,7 +88,7 @@ for iter = 1:CONVERGENCE_LIMIT
         end
     end
     
-    fb_products = exp(logf + logb); 
+    fb_products = exp(logf + logb);
     fb_products(:,:,:,1) = 1;
     log_fbp = log(fb_products);
     
